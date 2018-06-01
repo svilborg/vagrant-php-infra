@@ -1,0 +1,19 @@
+---
+- name: Install nginx
+  become: true
+  apt: name=nginx state=present
+
+- name: Copy across new nginx config
+  become: true
+  template:
+    src=yii-basic.conf
+    dest=/etc/nginx/sites-enabled/yii-basic.conf
+  notify:
+    - restart nginx
+ 
+# - name: Remove default virtual host
+#   file:
+#     path=/etc/nginx/sites-enabled/default
+#     state=absent
+#   notify:
+#     - restart nginx
