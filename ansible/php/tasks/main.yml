@@ -24,5 +24,9 @@
     - php7.1-mcrypt
     - php7.1-mbstring
 
+- name: Install php-fpm
+  become: true
+  apt: name=php7.1-fpm state=present
+
 - name: Install composer
   shell: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
