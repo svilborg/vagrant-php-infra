@@ -1,0 +1,44 @@
+---
+
+- name: Add PostgreSQL Repository
+  become: true
+  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main' state=present
+
+- name: Add Keys for PostgreSQL Repository
+  become: true
+  apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc state=present
+
+- name: Update apt
+  become: true
+  apt: update_cache=yes
+
+- name: Install PostgreSQL Packages
+  become: true
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - postgresql-9.3
+    - postgresql-client-9.3
+    - python-pygresql
+    - python-psycopg2
+
+- name: Create databases
+  become: true
+  become_user: postgres
+  postgresql_db: 
+    name : test 
+    state: present
+
+# - name: Import dump
+#   become: true
+#   become_user: postgres
+#   shell: psql {{ pgsql.database }} < /vagrant/{{ pgsql.dump }}
+#   when: pgsql.dump
+
+- name: Create users
+  become: true
+  become_user: postgres
+  postgresql_user: 
+    name: root 
+    password: root 
+    db: test 
+    priv: ALL

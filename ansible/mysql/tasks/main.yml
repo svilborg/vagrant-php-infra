@@ -26,9 +26,8 @@
 - name: Update MySQL Root Password
   become: true
   mysql_user: name=root
-              host="*"
-              password="root"
-              check_implicit_admin=yes
+              password=root
+              check_implicit_admin=true
               login_user=admin
               login_password=admin
               state=present
