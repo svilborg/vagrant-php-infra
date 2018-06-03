@@ -41,7 +41,7 @@ test(function(){
 
 test(function(){
     try {
-        $redis = new Redis(); 
+        $redis = new Redis();
         return $redis->connect('127.0.0.1', 6379);
     }
     catch(\Exception $e)
@@ -53,17 +53,32 @@ test(function(){
     return true;
 }, "Redis Connection");
 
+test(function(){
+    try {
+        $connection = new MongoDB\Driver\Manager("mongodb://localhost:27017");
+
+        return $connection;
+    }
+    catch(\Exception $e)
+    {
+        echo $e->getMessage();
+        return false;
+    }
+
+    return true;
+}, "Mongodb Connection");
+
 
 
 // Functions
 //////////////////////////////////
 
-function test($callback, $txt) 
-{ 
+function test($callback, $txt)
+{
     if($callback()) {
         ok($txt);
         return true;
-    } 
+    }
     ko($txt);
     return false;
 }

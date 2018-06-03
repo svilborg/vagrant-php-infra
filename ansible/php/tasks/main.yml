@@ -36,6 +36,8 @@
     - php{{ php_ver }}-sqlite3
     - php{{ php_ver }}-bcmath
     - php{{ php_ver }}-imagick
+    - php-mongodb
+    - php-mongo
 
 - name: Install PhpRedis extension
   become: true
