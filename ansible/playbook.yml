@@ -4,7 +4,6 @@
   tasks:
     - ping: ~
 
-
   roles:
     - common
     - mysql
