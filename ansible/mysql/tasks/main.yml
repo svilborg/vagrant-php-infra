@@ -4,3 +4,32 @@
   apt:
     name: mysql-server
     state: latest
+
+- name: Install MySQL DB client
+  become: true
+  apt:
+    name: mysql-client
+    state: latest
+
+- name: Install MySQL-python
+  become: true
+  apt:
+    name: python-mysqldb
+    state: latest
+
+
+- name: Ensure MySQL is running
+  become: true
+  service: name=mysql state=started enabled=true
+
+
+- name: Update MySQL Root Password
+  become: true
+  mysql_user: name=root
+              host="*"
+              password="root"
+              check_implicit_admin=yes
+              login_user=admin
+              login_password=admin
+              state=present
+              

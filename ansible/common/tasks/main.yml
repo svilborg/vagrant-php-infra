@@ -9,21 +9,12 @@
   apt:
     upgrade: safe
 
-- name: Install Git VCS
+- name: Install required base packages
   become: true
-  apt:
-    name: git
-    state: latest
-    
-- name: Install Curl
-  become: true
-  apt:
-    name: curl
-    state: latest
-
-- name: Install Nano
-  become: true
-  apt:
-    name: nano
-    state: latest
-
+  apt: name={{ item }} state=present
+  with_items:
+    - curl
+    - git
+    - zip
+    - unzip
+    - nano

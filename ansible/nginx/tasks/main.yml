@@ -13,15 +13,6 @@
 - name: Copy across new nginx config
   become: true
   template:
-    src=yii-basic.conf
-    dest=/etc/nginx/sites-enabled/yii-basic.conf
-  notify:
-    - restart nginx
-
-
-- name: Copy across new nginx config
-  become: true
-  template:
     src=symdemo.conf
     dest=/etc/nginx/sites-enabled/symdemo.conf
   notify:
