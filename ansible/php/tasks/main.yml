@@ -31,9 +31,14 @@
     - php{{ php_ver }}-intl
     - php{{ php_ver }}-curl
     - php{{ php_ver }}-json
-    - php{{ php_ver }}-mysql
     - php{{ php_ver }}-pgsql
+    - php{{ php_ver }}-mysql
     - php{{ php_ver }}-sqlite3
+    - php{{ php_ver }}-bcmath
+
+- name: Install PhpRedis extension
+  become: true
+  apt: "name=php-redis state=present"
 
 - name: Enable the MCrypt extension
   become: true
