@@ -11,6 +11,7 @@ testExt("pdo_pgsql");
 testExt("curl");
 testExt("json");
 testExt("xml");
+testExt("imagick");
 
 test(function(){
     try {
@@ -25,18 +26,32 @@ test(function(){
     return true;
 }, "Mysql Connection");
 
-// test(function(){
-//     try {
-//         $dbh = new PDO("pgsql:host=localhost;dbname=mysql", "root", "root");
-//     }
-//     catch(\Exception $e)
-//     {
-//         echo $e->getMessage();
-//         return false;
-//     }
+test(function(){
+    try {
+        $dbh = new PDO("pgsql:host=localhost;dbname=test", "root", "root");
+    }
+    catch(\Exception $e)
+    {
+        echo $e->getMessage();
+        return false;
+    }
 
-//     return true;
-// }, "postgres Connection");
+    return true;
+}, "Postgres Connection");
+
+test(function(){
+    try {
+        $redis = new Redis(); 
+        return $redis->connect('127.0.0.1', 6379);
+    }
+    catch(\Exception $e)
+    {
+        echo $e->getMessage();
+        return false;
+    }
+
+    return true;
+}, "Redis Connection");
 
 
 
