@@ -1,4 +1,11 @@
 ---
+
+- name: Apache is stopped
+  become: true
+  service:
+    name: apache2
+    state: stopped
+
 - name: Install nginx
   become: true
   apt: name=nginx state=present
@@ -10,10 +17,36 @@
     dest=/etc/nginx/sites-enabled/yii-basic.conf
   notify:
     - restart nginx
- 
-# - name: Remove default virtual host
-#   file:
-#     path=/etc/nginx/sites-enabled/default
-#     state=absent
-#   notify:
-#     - restart nginx
+
+
+- name: Copy across new nginx config
+  become: true
+  template:
+    src=symdemo.conf
+    dest=/etc/nginx/sites-enabled/symdemo.conf
+  notify:
+    - restart nginx
+
+- name: Copy across new nginx config
+  become: true
+  template:
+    src=larademo.conf
+    dest=/etc/nginx/sites-enabled/larademo.conf
+  notify:
+    - restart nginx
+
+- name: Copy across new nginx config
+  become: true
+  template:
+    src=frontend.yii.conf
+    dest=/etc/nginx/sites-enabled/frontend.yii.conf
+  notify:
+    - restart nginx
+
+- name: Copy across new nginx config
+  become: true
+  template:
+    src=backend.yii.conf
+    dest=/etc/nginx/sites-enabled/backend.yii.conf
+  notify:
+    - restart nginx

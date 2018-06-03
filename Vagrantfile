@@ -30,7 +30,10 @@ Vagrant.configure(2) do |config|
     ansible.playbook = "ansible/playbook.yml"
   end
 
+  config.vm.synced_folder '../', '/var/www/'
+
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 81, host: 8081
+  config.vm.network "forwarded_port", guest: 82, host: 8082
   config.vm.network "private_network", ip: "192.168.50.4"
 end
