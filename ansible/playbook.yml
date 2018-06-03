@@ -5,7 +5,10 @@
     - ping: ~
 
   roles:
-    - common
-    - mysql
+    # - common
+    # - mysql
+    # - pgsql
+    - redis
     - php
-    - nginx
+    # - nginx
+    - tests
