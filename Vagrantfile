@@ -1,8 +1,6 @@
-# OS
+
 VAGRANT_BOX = 'ubuntu/trusty64'
-# Memorable name for your
 VM_NAME = 'ubuntu-virtual'
-# VM User — 'vagrant' by default
 VM_USER = 'vagrant'
 
 # Optimized for Vagrant 1.7 and above.
@@ -12,6 +10,11 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = VAGRANT_BOX
   config.vm.hostname = VM_NAME
+
+  #config.vm.provider "docker" do |d|
+  #  d.image = "ubuntu"
+  #  d.version = "trusty"
+  #end
 
   config.vm.provider "virtualbox" do |v|
     v.name = VM_NAME
