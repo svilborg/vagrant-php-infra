@@ -23,12 +23,12 @@
   service: name=mysql state=started enabled=true
 
 
-#- name: Update MySQL Root Password
-#  become: true
-#  mysql_user: name=root
-#              password=root
-#              check_implicit_admin=true
-#              login_user=admin
-#              login_password=admin
-#              state=present
-#              
+- name: Update MySQL Root Password
+  become: true
+  mysql_user: name=root
+              password=root
+              check_implicit_admin=true
+              login_user=admin
+              login_password=admin
+              state=present
+             

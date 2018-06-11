@@ -1,10 +1,10 @@
 ---
 
-- name: Apache is stopped
-  become: true
-  service:
-    name: apache2
-    state: stopped
+# - name: Apache is stopped
+#   become: true
+#   service:
+#     name: apache2
+#     state: stopped
 
 - name: Install nginx
   become: true
