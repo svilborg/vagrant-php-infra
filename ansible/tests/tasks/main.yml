@@ -5,7 +5,7 @@
 - name: Copy Tests
   become: true
   template:
-    src=test.php
+    src=tests/test.php
     dest=/vagrant/test.php
 
 - name: Run Tests
