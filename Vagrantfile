@@ -11,11 +11,6 @@ Vagrant.configure(2) do |config|
   config.vm.box = VAGRANT_BOX
   config.vm.hostname = VM_NAME
 
-  #config.vm.provider "docker" do |d|
-  #  d.image = "ubuntu"
-  #  d.version = "trusty"
-  #end
-
   config.vm.provider "virtualbox" do |v|
     v.name = VM_NAME
     v.memory = 512
@@ -33,6 +28,14 @@ Vagrant.configure(2) do |config|
     ansible.compatibility_mode = "2.0"
     ansible.playbook = "ansible/playbook.yml"
   end
+
+  # config.vm.provision :puppet do |puppet|
+  #    puppet.manifests_path = "puppet/manifests"
+  #    puppet.module_path = ["puppet/modules", "/home/svilborg/.puppet/modules"]
+  #    puppet.manifest_file = 'default.pp'
+  #    puppet.options = ['--verbose']
+  # end
+
 
   config.vm.synced_folder '../', '/var/www/'
 
